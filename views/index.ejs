@@ -1,41 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
-    <link rel="stylesheet" type="text/css" href="/style.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" />
+
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>Weather App using NodeJS</h1>
-        <form action="/weather" method="get">
-            <input type="text" name="city" placeholder="Enter city name" />
-            <button type="submit">Get Weather</button>
+
+        <h1>
+            <i class="fas fa-cloud-sun"></i>
+            Weather App
+        </h1>
+
+        <form action="/weather" method="GET">
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <button type="submit">
+                <i class="fas fa-search"></i>
+                Search
+            </button>
         </form>
+
         <% if (error) { %>
             <p class="error">
                 <%= error %>
             </p>
-            <% } else if (weather) { %>
-                <div class="card">
-                    <!-- Add your weather data here -->
-                    <p>
-                        <i class="fas fa-thermometer-half"></i>
-                        <%=weather.main.temp%>&deg;F
-                    </p>
-                    <p>
-                        <i class="fas fa-cloud"></i>
-                        <%=weather.weather[0].main%>
-                    </p>
+            <% } %>
 
-                    <p>
-                        <i class="fas fa-map-marker-alt"></i>
-                        <%=weather.name%>, <%=weather.sys.country%>
-                    </p>
-                </div>
-                <% } %>
+                <% if (weather) { %>
+                    <div class="card">
+
+                        <h2>
+                            <%= weather.name %>, <%= weather.sys.country %>
+                        </h2>
+
+                        <p>
+                            <i class="fas fa-temperature-high"></i>
+                            Temperature:
+                            <%= weather.main.temp %>&deg;F
+                        </p>
+
+                        <p>
+                            <i class="fas fa-cloud"></i>
+                            Weather:
+                            <%= weather.weather[0].main %>
+                        </p>
+
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i>
+                            Location:
+                            <%= weather.name %>
+                        </p>
+
+                        <p>
+                            <i class="fas fa-tint"></i>
+                            Humidity:
+                            <%= weather.main.humidity %>%
+                        </p>
+
+                        <p>
+                            <i class="fas fa-wind"></i>
+                            Wind Speed:
+                            <%= weather.wind.speed %> mph
+                        </p>
+
+                    </div>
+                    <% } %>
+
     </div>
 </body>
 
